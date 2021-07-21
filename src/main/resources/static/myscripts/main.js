@@ -11,7 +11,7 @@ $('document').ready(function () {
     showUsers();
 })
 
-//строит таблицу всех юзеров
+//table of users
 function showUsers() {
     $('#users').empty();
     $.ajax("/users", {
@@ -40,7 +40,7 @@ function showUsers() {
     })
 }
 
-//открывает модалку для удаления
+//modal window for delete users
 function openDeleteModal(id) {
     let name = $(`#userName${id}`).text()
     let roles = $(`#userRoles${id}`).text().trim().split(" ");
@@ -52,7 +52,7 @@ function openDeleteModal(id) {
     });
 }
 
-//кнопка в модалке удаляет юзверя
+//button for delete users
 $('#deleteUser').on('click', function deleteUser() {
     let id = $('#delete #id').val();
     $.ajax('/users/' + id, {
@@ -90,7 +90,7 @@ $('.btn-primary').on('click', function (event) {
     })
 })
 
-//добавление юзера
+//add users
 $('.btn-success').on('click', function (event) {
     event.preventDefault();
     let user = {
