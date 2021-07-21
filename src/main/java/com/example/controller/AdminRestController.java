@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/admin/users")
 public class AdminRestController {
     private UserService userService;
 
@@ -19,7 +20,7 @@ public class AdminRestController {
         this.userService = userService;
     }
 
-    @GetMapping("/users/userAuth")
+    @GetMapping("/userAuth")
     public ResponseEntity<User> getUserAuth() {
         User user = (User) SecurityContextHolder
                 .getContext()
@@ -28,25 +29,25 @@ public class AdminRestController {
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/users")
+    @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         List<User> users = userService.getAllUsers();
         return users != null ? ResponseEntity.ok(users) : ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") Long userId) {
         userService.deleteUser(userId);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/users/add")
+    @PostMapping("/add")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         userService.addUser(user);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.badRequest().build();
     }
 
-    @PutMapping("/users/edit")
+    @PutMapping("/edit")
     public ResponseEntity<User> editUser(@RequestBody User user) {
         userService.addUser(user);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.badRequest().build();

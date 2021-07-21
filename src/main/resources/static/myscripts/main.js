@@ -1,5 +1,5 @@
 $('document').ready(function () {
-    $.ajax('/users/userAuth', {
+    $.ajax('/admin/users/userAuth', {
         method: 'GET',
         success: function (user) {
             $('#nameTitle').text(user.name);
@@ -14,7 +14,7 @@ $('document').ready(function () {
 //table of users
 function showUsers() {
     $('#users').empty();
-    $.ajax("/users", {
+    $.ajax("/admin/users", {
         dataType: "json",
         method: 'GET',
         success: function (data) {
@@ -55,7 +55,7 @@ function openDeleteModal(id) {
 //button for delete users
 $('#deleteUser').on('click', function deleteUser() {
     let id = $('#delete #id').val();
-    $.ajax('/users/' + id, {
+    $.ajax('/admin/users/' + id, {
         method: 'DELETE',
         success: function () {
             $("#users").find(`#tr${id}`).remove();
@@ -79,7 +79,7 @@ $('.btn-primary').on('click', function (event) {
         password: $('#passEdit').val(),
         roles: $('#rolesEdit').val()
     };
-    $.ajax('/users/edit', {
+    $.ajax('/admin/users/edit', {
         data: JSON.stringify(user),
         dataType: 'json',
         contentType: 'application/JSON; charset=utf-8',
@@ -98,7 +98,7 @@ $('.btn-success').on('click', function (event) {
         password: $('#addPass').val(),
         roles: $('#addRole').val()
     };
-    $.ajax('/users/add', {
+    $.ajax('/admin/users/add', {
         data: JSON.stringify(user),
         dataType: 'json',
         contentType: 'application/JSON; charset=utf-8',
