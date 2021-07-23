@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -15,17 +16,34 @@
     <div class="container-fluid bg-dark">
         <nav class="navbar navbar-expand-lg navbar-light bg-dark">
             <div class="container-fluid">
-                <span class="text-light"><strong th:text="${userAuthentication.getUsername()}"></strong></span>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active text-white-50">
+
+                            <h5>with roles:
+                                <span sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                               ADMIN
+                            </span>
+                                <span sec:authorize="hasAnyRole('ROLE_USER')">
+                                USER
+                            </span>
+                            </h5>
+                        </li>
+                    </ul>
+                    <a class="nav-link text-white-50 logout" href="/logout">Logout</a>
+                </div>
+<!--                <span class="text-light"><strong th:text="${userAuthentication.getUsername()}"></strong></span>
                 <span class="text-light">   with roles:   </span>
                 <span class="text-light"><strong th:each="role : ${userAuthentication.getRoles()}"
                                                  th:text="${role.getName()}"></strong></span>
                 <ul class="nav navbar-nav flex-nowrap ml-auto">
                     <li class="nav-item" role="presentation"><a class="nav-link text-muted" href="/logout">Logout</a></li>
-                </ul>
+                </ul>-->
             </div>
 
         </nav>
     </div>
+
 </header>
 <div>
     <div class="d-flex">

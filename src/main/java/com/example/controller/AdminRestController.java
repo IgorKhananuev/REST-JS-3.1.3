@@ -20,14 +20,14 @@ public class AdminRestController {
         this.userService = userService;
     }
 
-    @GetMapping("/userAuth")
-    public ResponseEntity<User> getUserAuth() {
-        User user = (User) SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getPrincipal();
-        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
-    }
+//    @GetMapping("/userAuth")
+//    public ResponseEntity<User> getUserAuth() {
+//        User user = (User) SecurityContextHolder
+//                .getContext()
+//                .getAuthentication()
+//                .getPrincipal();
+//        return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
+//    }
 
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
